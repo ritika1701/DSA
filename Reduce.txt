@@ -1,0 +1,36 @@
+
+Reduce Array Size to Half: https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/608/week-1-july-1st-july-7th/3804/
+
+
+
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+        
+        int s=arr.size();
+        map<int,int>f;
+        vector<int> ans;
+        for(int i=0;i<s;i++)
+        {
+            f[arr[i]]+=1;
+        }
+        
+        for (auto value : f){
+            ans.push_back(value.second);
+            
+        }
+        
+        sort(ans.begin(),ans.end(),greater<int>());
+        
+        s=s/2;
+        int sum=0,j=0;
+        for( j=0;j<ans.size();j++){
+            if(sum>=s)
+                break;
+            sum=sum+ans[j];
+        }
+        
+        return j;
+        
+    }
+};
